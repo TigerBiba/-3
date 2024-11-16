@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Практическая_3.Models;
 
 namespace Практическая_3.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Client.xaml
+    /// Логика взаимодействия для Staff.xaml
     /// </summary>
-    public partial class Client : Page
+    public partial class Staff : Page
     {
-        public Client(string role)
+        public Staff(string role)
         {
             InitializeComponent();
         }
