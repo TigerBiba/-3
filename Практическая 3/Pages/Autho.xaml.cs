@@ -29,7 +29,6 @@ namespace Практическая_3.Pages
         int click;
         string role = null;
         
-        DateTime dv = DateTime.Now.AddSeconds(10);
         DispatcherTimer dt = new DispatcherTimer();
 
         static System.Timers.Timer timer;
@@ -185,7 +184,6 @@ namespace Практическая_3.Pages
                     tbCapcha.IsReadOnly = true;
                     pswbPassword.Visibility = Visibility.Hidden;
                     dt.Start();
-
 
                     MessageBox.Show("НЕПРАВИЛЬНЫЙ ЛОГИН ИЛИ ПАРОЛЬ!!!, без негатива)");
 
