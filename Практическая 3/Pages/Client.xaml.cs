@@ -21,7 +21,7 @@ namespace Практическая_3.Pages
     /// </summary>
     public partial class Client : Page
     {
-        public Client(string role)
+        public Client(Login login1)
         {
             InitializeComponent();
         }

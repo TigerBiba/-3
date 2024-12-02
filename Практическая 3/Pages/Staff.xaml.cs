@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Практическая_3.Models;
 
 namespace Практическая_3.Pages
 {
@@ -20,7 +21,7 @@ namespace Практическая_3.Pages
     /// </summary>
     public partial class Staff : Page
     {
-        public Staff(string role)
+        public Staff(Login login1)
         {
             InitializeComponent();
         }
