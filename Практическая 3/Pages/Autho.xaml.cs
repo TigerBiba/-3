@@ -180,9 +180,9 @@ namespace Практическая_3.Pages
 
                     lbTimer.Visibility = Visibility.Visible;
                     dt.Tick += dtTicker;
-                    txtbLogin.IsReadOnly = true;
-                    tbCapcha.IsReadOnly = true;
-                    pswbPassword.Visibility = Visibility.Hidden;
+                    txtbLogin.IsEnabled = false;
+                    tbCapcha.IsEnabled = false;
+                    pswbPassword.IsEnabled = false;
                     dt.Start();
 
                     MessageBox.Show("НЕПРАВИЛЬНЫЙ ЛОГИН ИЛИ ПАРОЛЬ!!!, без негатива)");
@@ -226,9 +226,9 @@ namespace Практическая_3.Pages
                 dt.Stop();
                 second = 10;
                 lbTimer.Visibility = Visibility.Hidden;
-                txtbLogin.IsReadOnly = false;
-                pswbPassword.Visibility= Visibility.Visible;
-                tbCapcha.IsReadOnly = false;
+                txtbLogin.IsEnabled = true;
+                pswbPassword.IsEnabled = true;
+                tbCapcha.IsEnabled = true;
             }
         }
     }
