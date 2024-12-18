@@ -21,9 +21,31 @@ namespace Практическая_3.Pages
     /// </summary>
     public partial class Staff : Page
     {
-        public Staff(Login login1)
+        public Staff(string firstname, string secondname)
         {
             InitializeComponent();
+            timeNow(firstname, secondname);
+        }
+        private void timeNow(string firstname, string lastname)
+        {
+            TimeSpan userTime = (DateTime.Now.TimeOfDay);
+            TimeSpan morning = new TimeSpan(10, 0, 0);
+            TimeSpan day = new TimeSpan(12, 0, 0);
+            TimeSpan evening = new TimeSpan(17, 0, 0);
+            TimeSpan deepEvening = new TimeSpan(19, 0, 0);
+
+            if (userTime >= morning && userTime < day)
+            {
+                tbStaff.Text = ($"Доброе утро, {firstname} {lastname}");
+            }
+            else if (userTime >= day && userTime < evening)
+            {
+                tbStaff.Text = ($"Добрый день, {firstname} {lastname}");
+            }
+            else if (userTime >= evening && userTime < deepEvening)
+            {
+                tbStaff.Text = ($"Добрый вечер, {firstname} {lastname}");
+            }
         }
     }
 }

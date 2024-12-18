@@ -27,6 +27,8 @@ namespace Практическая_3.Models
         public string work_experience { get; set; }
         public Nullable<int> ID_departament { get; set; }
         public Nullable<int> ID_login { get; set; }
+        public string firstname { get; set; }
+        public string secondname { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Departament> Departament { get; set; }

@@ -28,8 +28,12 @@ namespace Практическая_3.Pages
     {
         int click;
         string role = null;
+        string firstname = null;
+        string secondname = null;
         
         DispatcherTimer dt = new DispatcherTimer();
+
+        TimeSpan now = new TimeSpan();
 
         static System.Timers.Timer timer;
 
@@ -46,7 +50,7 @@ namespace Практическая_3.Pages
 
         private void btnEnterGuests_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Client(null));
+            NavigationService.Navigate(new Guest());
         }
         private void GenerateCapctcha()
         {
@@ -78,8 +82,10 @@ namespace Практическая_3.Pages
                     if (isStaff != null)
                     {
                         role = "Работник";
-                        MessageBox.Show("Вы вошли под: " + role);
-                        LoadPage(role, user);
+                        firstname = isStaff.firstname;
+                        secondname = isStaff.secondname;
+
+                        LoadPage(role, firstname, secondname);
                         txtbLogin.Clear();
                         pswbPassword.Clear();
                         tbCapcha.Clear();
@@ -90,8 +96,10 @@ namespace Практическая_3.Pages
                     else if (isPatient != null)
                     {
                         role = "Пациент";
-                        MessageBox.Show("Вы вошли под: " + role);
-                        LoadPage(role, user);
+                        firstname = isPatient.firstname;
+                        secondname = isPatient.secondname;
+
+                        LoadPage(role, firstname, secondname);
                         txtbLogin.Clear();
                         pswbPassword.Clear();
                         tbCapcha.Clear();
@@ -118,14 +126,16 @@ namespace Практическая_3.Pages
                     if (isStaff != null)
                     {
                         role = "Работник";
-                        MessageBox.Show("Вы вошли под: " + role);
-                        LoadPage(role, user);
+                        firstname = isStaff.firstname;
+                        secondname = isStaff.secondname;
+                        LoadPage(role, firstname, secondname);
                     }
                     else if (isPatient != null)
                     {
                         role = "Пациент";
-                        MessageBox.Show("Вы вошли под: " + role);
-                        LoadPage(role, user);
+                        firstname = isPatient.firstname;
+                        secondname = isPatient.secondname;
+                        LoadPage(role, firstname, secondname);
                     }
                     txtbLogin.Clear();
                     pswbPassword.Clear();
@@ -156,14 +166,16 @@ namespace Практическая_3.Pages
                     if (isStaff != null)
                     {
                         role = "Работник";
-                        MessageBox.Show("Вы вошли под: " + role);
-                        LoadPage(role, user);
+                        firstname = isStaff.firstname;
+                        secondname = isStaff.secondname;
+                        LoadPage(role, firstname, secondname);
                     }
                     else if (isPatient != null)
                     {
                         role = "Пациент";
-                        MessageBox.Show("Вы вошли под: " + role);
-                        LoadPage(role, user);
+                        firstname = isPatient.firstname;
+                        secondname = isPatient.secondname;
+                        LoadPage(role, firstname, secondname);
                     }
                     txtbLogin.Clear();
                     pswbPassword.Clear();
@@ -198,17 +210,27 @@ namespace Практическая_3.Pages
                 }
             }
         }
-        private void LoadPage(string role, Login login1)
+        private void LoadPage(string role, string firstname, string lastname)
         {
+            TimeSpan userTime = (DateTime.Now.TimeOfDay);
+            TimeSpan morning = new TimeSpan(10, 0, 0);
+            TimeSpan evening = new TimeSpan(19, 0, 0);
 
-            switch (role)
+            if (userTime < morning || userTime > evening && role == "Работник")
             {
-                case "Пациент":
-                    NavigationService.Navigate(new Client(login1));
-                    break;
-                case "Работник":
-                    NavigationService.Navigate(new Staff(login1));
-                    break;
+                MessageBox.Show("Сейчас время для отдыха");
+            }
+            else if (firstname != null && lastname != null)
+            {
+                switch (role)
+                {
+                    case "Пациент":
+                        NavigationService.Navigate(new Client(firstname, lastname));
+                        break;
+                    case "Работник":
+                        NavigationService.Navigate(new Staff(firstname, lastname));
+                        break;
+                }
             }
         }
 
@@ -231,5 +253,6 @@ namespace Практическая_3.Pages
                 tbCapcha.IsEnabled = true;
             }
         }
+
     }
 }

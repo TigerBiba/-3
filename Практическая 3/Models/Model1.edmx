@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище HospitalProModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище HospitalProModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Departament">
           <Key>
             <PropertyRef Name="ID_departament" />
@@ -156,6 +156,8 @@
           <Property Name="work_experience" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="ID_departament" Type="int" />
           <Property Name="ID_login" Type="int" />
+          <Property Name="firstname" Type="varchar" MaxLength="200" />
+          <Property Name="secondname" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -602,8 +604,7 @@
             <End Role="WardInDepartament" EntitySet="WardInDepartament" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HospitalProModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -804,6 +805,8 @@
           <NavigationProperty Name="Recordind" Relationship="Self.FK_Recordind_Staff" FromRole="Staff" ToRole="Recordind" />
           <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Staff" FromRole="Staff" ToRole="Reports" />
           <NavigationProperty Name="Speciality1" Relationship="Self.FK_Staff_Speciality" FromRole="Staff" ToRole="Speciality" />
+          <Property Name="firstname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="secondname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1418,6 +1421,8 @@
           <EntitySetMapping Name="Staff">
             <EntityTypeMapping TypeName="HospitalProModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="secondname" ColumnName="secondname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
                 <ScalarProperty Name="ID_staff" ColumnName="ID_staff" />
                 <ScalarProperty Name="speciality" ColumnName="speciality" />
                 <ScalarProperty Name="work_experience" ColumnName="work_experience" />
