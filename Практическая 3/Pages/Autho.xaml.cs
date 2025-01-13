@@ -21,9 +21,6 @@ using Практическая_3.Services;
 
 namespace Практическая_3.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для Autho.xaml
-    /// </summary>
     public partial class Autho : Page
     {
         int click;
@@ -33,8 +30,6 @@ namespace Практическая_3.Pages
         
         DispatcherTimer dt = new DispatcherTimer();
 
-        TimeSpan now = new TimeSpan();
-
         static System.Timers.Timer timer;
 
         public Autho()
@@ -43,70 +38,21 @@ namespace Практическая_3.Pages
             click = 0;
         }
 
-        private void txtbLogin_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void btnEnterGuests_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Guest());
-        }
-        private void GenerateCapctcha()
-        {
-            tbCapcha.Visibility = Visibility.Visible;
-            tblCaptcha.Visibility = Visibility.Visible;
-
-            string capctchaText = CaptchaGenerator.GenerateCaptchaText(6);
-            tblCaptcha.Text = capctchaText;
-            tblCaptcha.TextDecorations = TextDecorations.Strikethrough;
-        }
-
-
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
             click += 1;
             string login1 = txtbLogin.Text.Trim();
             string password = Hash.HashPassword(pswbPassword.Password.Trim());
             HospitalProEntities1 db = Helper.GetContext();
-            tbCapcha.Visibility = Visibility.Hidden;
-            tblCaptcha.Visibility = Visibility.Hidden;
+
+            captchaVisibility(false);
 
             var user = db.Login.FirstOrDefault(x => x.login1 == login1 && x.password == password);
             if (click == 1)
-             {
+            {
                  if (user != null)
                  {
-                    var isStaff = db.Staff.FirstOrDefault(x => x.ID_login == user.ID_login);
-                    var isPatient = db.Patient.FirstOrDefault(x => x.ID_login == user.ID_login);
-                    if (isStaff != null)
-                    {
-                        role = "Работник";
-                        firstname = isStaff.firstname;
-                        secondname = isStaff.secondname;
-
-                        LoadPage(role, firstname, secondname);
-                        txtbLogin.Clear();
-                        pswbPassword.Clear();
-                        tbCapcha.Clear();
-                        login1 = null;
-                        password = null;
-                        click = 0;
-                    }
-                    else if (isPatient != null)
-                    {
-                        role = "Пациент";
-                        firstname = isPatient.firstname;
-                        secondname = isPatient.secondname;
-
-                        LoadPage(role, firstname, secondname);
-                        txtbLogin.Clear();
-                        pswbPassword.Clear();
-                        tbCapcha.Clear();
-                        login1 = null;
-                        password = null;
-                        click = 0;
-                    }
+                    findUser(login1, password);
                  }
                 else
                 {
@@ -115,74 +61,30 @@ namespace Практическая_3.Pages
                     pswbPassword.Clear();
                     GenerateCapctcha();
                 }
-             }
-             else if (click > 1 && click <= 3)
-             {
+            }
+            else if (click > 1 && click <= 3)
+            {
 
                  if (user != null && tbCapcha.Text == tblCaptcha.Text)
                  {
-                    var isStaff = db.Staff.FirstOrDefault(x => x.ID_login == user.ID_login);
-                    var isPatient = db.Patient.FirstOrDefault(x => x.ID_login == user.ID_login);
-                    if (isStaff != null)
-                    {
-                        role = "Работник";
-                        firstname = isStaff.firstname;
-                        secondname = isStaff.secondname;
-                        LoadPage(role, firstname, secondname);
-                    }
-                    else if (isPatient != null)
-                    {
-                        role = "Пациент";
-                        firstname = isPatient.firstname;
-                        secondname = isPatient.secondname;
-                        LoadPage(role, firstname, secondname);
-                    }
-                    txtbLogin.Clear();
-                    pswbPassword.Clear();
-                    tbCapcha.Clear();
-                    login1 = null;
-                    password = null;
-                    click = 0;
+                    findUser(login1, password);
                  }
                  else
                  {
-                     MessageBox.Show("Введите данные заново!");
-                     txtbLogin.Clear();
-                     pswbPassword.Clear();
-                     tbCapcha.Clear();
-                     login1 = null;
-                     password = null;
-                     GenerateCapctcha();
-                     tbCapcha.Visibility = Visibility.Visible;
-                     tblCaptcha.Visibility = Visibility.Visible;
+                    MessageBox.Show("Введите данные заново!");
+
+                    Clear(login1, password, clickZero: false);
+
+                    GenerateCapctcha();
+
+                    captchaVisibility(true);
                  }
-             }
+            }
             else if(click > 3)
             {
                 if (user != null && tbCapcha.Text == tblCaptcha.Text)
                 {
-                    var isStaff = db.Staff.FirstOrDefault(x => x.ID_login == user.ID_login);
-                    var isPatient = db.Patient.FirstOrDefault(x => x.ID_login == user.ID_login);
-                    if (isStaff != null)
-                    {
-                        role = "Работник";
-                        firstname = isStaff.firstname;
-                        secondname = isStaff.secondname;
-                        LoadPage(role, firstname, secondname);
-                    }
-                    else if (isPatient != null)
-                    {
-                        role = "Пациент";
-                        firstname = isPatient.firstname;
-                        secondname = isPatient.secondname;
-                        LoadPage(role, firstname, secondname);
-                    }
-                    txtbLogin.Clear();
-                    pswbPassword.Clear();
-                    tbCapcha.Clear();
-                    login1 = null;
-                    password = null;
-                    click = 0;
+                    findUser(login1, password);
                 }
                 else
                 {
@@ -192,21 +94,17 @@ namespace Практическая_3.Pages
 
                     lbTimer.Visibility = Visibility.Visible;
                     dt.Tick += dtTicker;
-                    txtbLogin.IsEnabled = false;
-                    tbCapcha.IsEnabled = false;
-                    pswbPassword.IsEnabled = false;
+
+                    Enabled(isEnabled: false);
+
                     dt.Start();
 
                     MessageBox.Show("НЕПРАВИЛЬНЫЙ ЛОГИН ИЛИ ПАРОЛЬ!!!, без негатива)");
 
-                    txtbLogin.Clear();
-                    pswbPassword.Clear();
-                    tbCapcha.Clear();
-                    login1 = null;
-                    password = null;
+                    Clear(login1, password, clickZero: false);
+
                     GenerateCapctcha();
-                    tbCapcha.Visibility = Visibility.Visible;
-                    tblCaptcha.Visibility = Visibility.Visible;
+                    captchaVisibility(true);
                 }
             }
         }
@@ -233,8 +131,16 @@ namespace Практическая_3.Pages
                 }
             }
         }
+        private void GenerateCapctcha()
+        {
+            captchaVisibility(true);
 
-        int? second = 10;
+            string capctchaText = CaptchaGenerator.GenerateCaptchaText(6);
+            tblCaptcha.Text = capctchaText;
+            tblCaptcha.TextDecorations = TextDecorations.Strikethrough;
+        }
+
+        int second = 10;
         private void dtTicker(object sender, EventArgs e)
         {
             if (second >= 0)
@@ -248,11 +154,102 @@ namespace Практическая_3.Pages
                 dt.Stop();
                 second = 10;
                 lbTimer.Visibility = Visibility.Hidden;
-                txtbLogin.IsEnabled = true;
-                pswbPassword.IsEnabled = true;
-                tbCapcha.IsEnabled = true;
+
+                Enabled(isEnabled: true);
+
+                click = 0;
+
+                captchaVisibility(false);
+            }
+        }
+        public void Clear(string login1, string password, bool clickZero)
+        {
+            if (clickZero == true)
+            {
+                txtbLogin.Clear();
+                pswbPassword.Clear();
+                tbCapcha.Clear();
+                login1 = null;
+                password = null;
+                click = 0;
+            }
+            else if (clickZero == false)
+            {
+                txtbLogin.Clear();
+                pswbPassword.Clear();
+                tbCapcha.Clear();
+                login1 = null;
+                password = null;
             }
         }
 
+        public void Enabled(bool isEnabled)
+        {
+            if (isEnabled == true)
+            {
+                txtbLogin.IsEnabled = true;
+                pswbPassword.IsEnabled = true;
+                tbCapcha.IsEnabled = true;
+                btnEnter.IsEnabled = true;
+                btnEnterGuests.IsEnabled = true;
+            }
+            else if (isEnabled == false)
+            {
+                txtbLogin.IsEnabled = false;
+                tbCapcha.IsEnabled = false;
+                pswbPassword.IsEnabled = false;
+                btnEnter.IsEnabled = false;
+                btnEnterGuests.IsEnabled = false;
+            }
+        }
+
+        public void findUser(string login1, string password) 
+        {
+            HospitalProEntities1 db = Helper.GetContext();
+
+            var user = db.Login.FirstOrDefault(x => x.login1 == login1 && x.password == password);
+
+            var isStaff = db.Staff.FirstOrDefault(x => x.ID_login == user.ID_login);
+            var isPatient = db.Patient.FirstOrDefault(x => x.ID_login == user.ID_login);
+            if (isStaff != null)
+            {
+                role = "Работник";
+                firstname = isStaff.firstname;
+                secondname = isStaff.secondname;
+                LoadPage(role, firstname, secondname);
+            }
+            else if (isPatient != null)
+            {
+                role = "Пациент";
+                firstname = isPatient.firstname;
+                secondname = isPatient.secondname;
+                LoadPage(role, firstname, secondname);
+            }
+
+            Clear(login1, password, true);
+        }
+        private void captchaVisibility(bool captchaVisible)
+        {
+            if (captchaVisible == true)
+            {
+                tbCapcha.Visibility = Visibility.Visible;
+                tblCaptcha.Visibility = Visibility.Visible;
+            }
+            else if (captchaVisible == false)
+            {
+                tbCapcha.Visibility = Visibility.Hidden;
+                tblCaptcha.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void btnEnterGuests_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Guest());
+        }
+
+        private void txtbLogin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

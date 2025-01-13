@@ -46,7 +46,7 @@ namespace Практическая_3.Pages
             }
             else if (userTime >= evening && userTime < deepEvening)
             {
-                tbPatient.Text = ($"Добрый день, {firstname} {lastname}");
+                tbPatient.Text = ($"Добрый вечер, {firstname} {lastname}");
             }
             else
             {
