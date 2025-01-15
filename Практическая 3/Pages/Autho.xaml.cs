@@ -27,6 +27,7 @@ namespace Практическая_3.Pages
         string role = null;
         string firstname = null;
         string secondname = null;
+        int speciality;
         
         DispatcherTimer dt = new DispatcherTimer();
 
@@ -128,6 +129,9 @@ namespace Практическая_3.Pages
                     case "Работник":
                         NavigationService.Navigate(new Staff(firstname, lastname));
                         break;
+                    case "Админ":
+                        NavigationService.Navigate(new Admin(firstname, lastname));
+                        break;
                 }
             }
         }
@@ -213,10 +217,21 @@ namespace Практическая_3.Pages
             var isPatient = db.Patient.FirstOrDefault(x => x.ID_login == user.ID_login);
             if (isStaff != null)
             {
-                role = "Работник";
-                firstname = isStaff.firstname;
-                secondname = isStaff.secondname;
-                LoadPage(role, firstname, secondname);
+                speciality = isStaff.speciality;
+                if (speciality == 4)
+                {
+                    role = "Админ";
+                    firstname = isStaff.firstname;
+                    secondname = isStaff.secondname;
+                    LoadPage(role, firstname, secondname);
+                }
+                else 
+                {
+                    role = "Работник";
+                    firstname = isStaff.firstname;
+                    secondname = isStaff.secondname;
+                    LoadPage(role, firstname, secondname);
+                }
             }
             else if (isPatient != null)
             {

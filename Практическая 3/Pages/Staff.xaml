@@ -10,6 +10,6 @@
 
     <Grid>
         <TextBlock x:Name="tbStaff" HorizontalAlignment="Center" Margin="0,196,0,0" TextWrapping="Wrap" Text="Вы работник" VerticalAlignment="Top" Foreground="#FF2FCFDC" FontSize="26"/>
-
+        
     </Grid>
 </Page>
