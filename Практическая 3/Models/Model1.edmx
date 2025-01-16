@@ -158,6 +158,7 @@
           <Property Name="ID_login" Type="int" />
           <Property Name="firstname" Type="varchar" MaxLength="200" />
           <Property Name="secondname" Type="varchar" MaxLength="200" />
+          <Property Name="photo" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -807,6 +808,7 @@
           <NavigationProperty Name="Speciality1" Relationship="Self.FK_Staff_Speciality" FromRole="Staff" ToRole="Speciality" />
           <Property Name="firstname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="secondname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1421,6 +1423,7 @@
           <EntitySetMapping Name="Staff">
             <EntityTypeMapping TypeName="HospitalProModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="photo" ColumnName="photo" />
                 <ScalarProperty Name="secondname" ColumnName="secondname" />
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
                 <ScalarProperty Name="ID_staff" ColumnName="ID_staff" />
