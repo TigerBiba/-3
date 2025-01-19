@@ -30,6 +30,7 @@ namespace Практическая_3.Models
         public string firstname { get; set; }
         public string secondname { get; set; }
         public string photo { get; set; }
+        public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Departament> Departament { get; set; }

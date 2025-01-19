@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Практическая_3.Models;
+using Практическая_3.Services;
 
 namespace Практическая_3.Pages
 {
@@ -25,6 +26,8 @@ namespace Практическая_3.Pages
         {
             InitializeComponent();
             timeNow(firstname, secondname);
+            HospitalProEntities1 db = Helper.GetContext();
+            
         }
         private void timeNow(string firstname, string lastname)
         {

@@ -18,29 +18,41 @@ using Практическая_3.Services;
 
 namespace Практическая_3.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для Admin.xaml
-    /// </summary>
+    /*public struct StaffStruct
+    {
+        public int ID_staff { get; set; }
+        public int speciality { get; set; }
+        public int work_experience { get; set; }
+        public int ID_departament { get; set; }
+        public string firstname { get; set; }
+        public string secondname { get; set; }
+        public string photo { get; set; }
+        public string email { get; set; }
+    }*/
+
     public partial class Admin : Page
     {
+        int click;
         public Admin(string fiertname, string lastname)
         {
             InitializeComponent();
-            this.Loaded += Admin_Loaded;
+
+            var staff = Helper.GetContext().Staff.ToList();
+            LViewStaff.ItemsSource = staff;
+            LViewStaff.SelectedItem = null;
         }
 
-        private void Admin_Loaded(object sender, RoutedEventArgs e)
+        private void btnChangeUser_Click(object sender, RoutedEventArgs e)
         {
-            LoadStaff();
-        }
+            //StaffStruct selectedStaff = LViewStaff.SelectedItem.GetType();
 
-        private void LoadStaff()
-        {
-            HospitalProEntities1 db = Helper.GetContext();
+            Console.WriteLine(LViewStaff.SelectedValue);
+            
 
-            db.Staff.Load();
-
-            LViewStaff.ItemsSource = db.Staff.Local;
+            if (LViewStaff.SelectedItem is Staff selectedStaff)
+                {
+                    NavigationService.Navigate(new StaffChange(selectedStaff));
+                }
         }
     }
 }

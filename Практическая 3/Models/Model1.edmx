@@ -159,6 +159,7 @@
           <Property Name="firstname" Type="varchar" MaxLength="200" />
           <Property Name="secondname" Type="varchar" MaxLength="200" />
           <Property Name="photo" Type="varchar(max)" />
+          <Property Name="email" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -809,6 +810,7 @@
           <Property Name="firstname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="secondname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1423,6 +1425,7 @@
           <EntitySetMapping Name="Staff">
             <EntityTypeMapping TypeName="HospitalProModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="photo" ColumnName="photo" />
                 <ScalarProperty Name="secondname" ColumnName="secondname" />
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
