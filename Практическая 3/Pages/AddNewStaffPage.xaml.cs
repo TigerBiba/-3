@@ -18,35 +18,23 @@ using Практическая_3.Services;
 namespace Практическая_3.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для StaffChange.xaml
+    /// Логика взаимодействия для AddNewStaffPage.xaml
     /// </summary>
-    public partial class StaffChange : Page
+    public partial class AddNewStaffPage : Page
     {
         private Staff selectedStaff;
         private string newImagePath;
-        public StaffChange(Staff staff)
+
+        public AddNewStaffPage()
         {
             InitializeComponent();
+            
             HospitalProEntities1 db = Helper.GetContext();
-
-            selectedStaff = staff;
-
-            tbSurname.Text = staff.secondname;
-            tbFirstname.Text = staff.firstname;
-            tbEmail.Text = staff.email;
-            imgStaff.Source = new BitmapImage(new Uri(staff.photo));
-            tbExp.Text = staff.work_experience;
 
             cbSpeciality.Items.Add("Глав врач");
             cbSpeciality.Items.Add("Уборщик");
-            cbSpeciality.Items.Add("Медсестра"); 
+            cbSpeciality.Items.Add("Медсестра");
             cbSpeciality.Items.Add("Администратор");
-
-            cbSpeciality.SelectedIndex = staff.speciality-1;
-
-            var staffLogin = db.Login.FirstOrDefault(x => x.ID_login == staff.ID_login);
-            tbLogin.Text = staffLogin.login1.ToString();
-            tbPassword.Text = staffLogin.password.ToString();
 
         }
 
@@ -54,42 +42,45 @@ namespace Практическая_3.Pages
         {
             HospitalProEntities1 db = Helper.GetContext();
 
-            var selectedStaffInformation = db.Staff.FirstOrDefault(x => x.ID_staff == selectedStaff.ID_staff);
-            var selectedStaffLogin = db.Login.FirstOrDefault(x => x.ID_login == selectedStaffInformation.ID_login);
+            Staff staff = new Staff();
 
-            if (selectedStaffInformation != null)
-            {
+            Login staffLogin = new Login();
+
+            var currentID = db.Staff.OrderByDescending(x => x.ID_staff).First().ID_staff + 1;
+
+            var loginID = db.Login.OrderByDescending(x => x.ID_login).First().ID_login + 1;
+
 
                 if (tbSurname.Text != null && tbFirstname.Text != null && tbEmail.Text != null && tbLogin.Text != null && tbPassword.Text != null)
                 {
-                    string exp = tbExp.Text;
-                    selectedStaffInformation.secondname = tbSurname.Text;
-                    selectedStaffInformation.firstname = tbFirstname.Text;
-                    selectedStaffInformation.email = tbEmail.Text;
-                    selectedStaffInformation.work_experience = tbExp.Text;
+                    staff.ID_staff = currentID;
+                    staff.secondname = tbSurname.Text;
+                    staff.firstname = tbFirstname.Text;
+                    staff.email = tbEmail.Text;
+                    staff.ID_staff = loginID;
+                    staff.ID_departament = 1;
 
-                    selectedStaffInformation.speciality = cbSpeciality.SelectedIndex+1;
+                    staff.speciality = cbSpeciality.SelectedIndex + 1;
                     if (newImagePath != null)
                     {
-                        selectedStaffInformation.photo = newImagePath;
+                        staff.photo = newImagePath;
                     }
                     else
                     {
-                        selectedStaffInformation.photo = selectedStaffInformation.photo;
+                        staff.photo = null;
                     }
 
-                    selectedStaffLogin.login1 = tbLogin.Text;
-                    selectedStaffLogin.password = Hash.HashPassword(tbPassword.Text);
+                    staffLogin.login1 = tbLogin.Text;
+                    staffLogin.password = Hash.HashPassword(tbPassword.Text);
 
                     db.SaveChanges();
 
-                    NavigationService.Navigate(new Admin(selectedStaffInformation.firstname, selectedStaffInformation.secondname));
+                    NavigationService.Navigate(new Admin(staff.firstname, staff.secondname));
                 }
                 else
                 {
                     MessageBox.Show("Ошибка, все поля должны быть заполнены");
                 }
-            }
         }
 
         private void btnAddImage_Click(object sender, RoutedEventArgs e)
@@ -99,7 +90,7 @@ namespace Практическая_3.Pages
 
             bool? result = dialog.ShowDialog();
 
-            if (result == true) 
+            if (result == true)
             {
                 string filePath = dialog.FileName;
 
@@ -126,5 +117,6 @@ namespace Практическая_3.Pages
 
             cbSpeciality.SelectedIndex = 1;
         }
+        
     }
 }

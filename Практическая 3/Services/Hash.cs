@@ -23,6 +23,5 @@ namespace Практическая_3.Services
                 return BitConverter.ToString(hash).Replace("-", String.Empty); //Возвращаем методом строковое значение
             }
         }
-
     }
 }

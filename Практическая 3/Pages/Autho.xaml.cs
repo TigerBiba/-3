@@ -127,7 +127,7 @@ namespace Практическая_3.Pages
                         NavigationService.Navigate(new Client(firstname, lastname));
                         break;
                     case "Работник":
-                        NavigationService.Navigate(new Staff(firstname, lastname));
+                        NavigationService.Navigate(new StaffPage(firstname, lastname));
                         break;
                     case "Админ":
                         NavigationService.Navigate(new Admin(firstname, lastname));

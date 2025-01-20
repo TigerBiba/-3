@@ -33,7 +33,7 @@ namespace Практическая_3.Pages
     public partial class Admin : Page
     {
         int click;
-        public Admin(string fiertname, string lastname)
+        public Admin(string firstname, string lastname)
         {
             InitializeComponent();
 
@@ -44,15 +44,15 @@ namespace Практическая_3.Pages
 
         private void btnChangeUser_Click(object sender, RoutedEventArgs e)
         {
-            //StaffStruct selectedStaff = LViewStaff.SelectedItem.GetType();
-
-            Console.WriteLine(LViewStaff.SelectedValue);
-            
-
             if (LViewStaff.SelectedItem is Staff selectedStaff)
                 {
                     NavigationService.Navigate(new StaffChange(selectedStaff));
                 }
+        }
+
+        private void btnNewStaff_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddNewStaffPage());
         }
     }
 }

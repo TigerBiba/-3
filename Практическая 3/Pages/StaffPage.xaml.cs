@@ -18,16 +18,15 @@ using Практическая_3.Services;
 namespace Практическая_3.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Staff.xaml
+    /// Логика взаимодействия для StaffPage.xaml
     /// </summary>
-    public partial class Staff : Page
+    public partial class StaffPage : Page
     {
-        public Staff(string firstname, string secondname)
+        public StaffPage(string firstname, string secondname)
         {
             InitializeComponent();
             timeNow(firstname, secondname);
             HospitalProEntities1 db = Helper.GetContext();
-            
         }
         private void timeNow(string firstname, string lastname)
         {
