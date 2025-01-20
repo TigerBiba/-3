@@ -26,5 +26,6 @@
         <Image x:Name="imgStaff" HorizontalAlignment="Left" Height="127" Margin="400,10,0,0" VerticalAlignment="Top" Width="140"/>
         <Button x:Name="btnAddImage" Content="Добавить фото" HorizontalAlignment="Left" Margin="400,148,0,0" VerticalAlignment="Top" Width="140" Click="btnAddImage_Click"/>
         <TextBox x:Name="tbExp" HorizontalAlignment="Left" Margin="133,292,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Height="27"/>
+        <TextBlock HorizontalAlignment="Left" Margin="24,296,0,0" TextWrapping="Wrap" Text="Стаж работы" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
     </Grid>
 </Page>

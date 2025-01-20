@@ -57,8 +57,9 @@ namespace Практическая_3.Pages
                     staff.secondname = tbSurname.Text;
                     staff.firstname = tbFirstname.Text;
                     staff.email = tbEmail.Text;
-                    staff.ID_staff = loginID;
+                    staff.ID_login = loginID;
                     staff.ID_departament = 1;
+                    staff.work_experience = tbExp.Text;
 
                     staff.speciality = cbSpeciality.SelectedIndex + 1;
                     if (newImagePath != null)
@@ -73,6 +74,8 @@ namespace Практическая_3.Pages
                     staffLogin.login1 = tbLogin.Text;
                     staffLogin.password = Hash.HashPassword(tbPassword.Text);
 
+                    db.Staff.Add(staff);
+                    db.Login.Add(staffLogin);
                     db.SaveChanges();
 
                     NavigationService.Navigate(new Admin(staff.firstname, staff.secondname));
