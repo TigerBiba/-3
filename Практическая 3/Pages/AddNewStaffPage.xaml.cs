@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,6 @@ namespace Практическая_3.Pages
     /// </summary>
     public partial class AddNewStaffPage : Page
     {
-        private Staff selectedStaff;
         private string newImagePath;
 
         public AddNewStaffPage()
@@ -50,9 +50,6 @@ namespace Практическая_3.Pages
 
             var loginID = db.Login.OrderByDescending(x => x.ID_login).First().ID_login + 1;
 
-
-                if (tbSurname.Text != null && tbFirstname.Text != null && tbEmail.Text != null && tbLogin.Text != null && tbPassword.Text != null)
-                {
                     staff.ID_staff = currentID;
                     staff.secondname = tbSurname.Text;
                     staff.firstname = tbFirstname.Text;
@@ -76,14 +73,21 @@ namespace Практическая_3.Pages
 
                     db.Staff.Add(staff);
                     db.Login.Add(staffLogin);
-                    db.SaveChanges();
 
-                    NavigationService.Navigate(new Admin(staff.firstname, staff.secondname));
-                }
-                else
+                    var context = new ValidationContext(staffLogin);
+                    var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+
+                if (Validator.TryValidateObject(staffLogin, context, results, true))
                 {
-                    MessageBox.Show("Ошибка, все поля должны быть заполнены");
+                    var contextStaffInformation = new ValidationContext(staff);
+
+                    if (Validator.TryValidateObject(staff, contextStaffInformation, results, true))
+                    {
+                        db.SaveChanges();
+                    }
                 }
+
+                NavigationService.Navigate(new Admin(staff.firstname, staff.secondname));
         }
 
         private void btnAddImage_Click(object sender, RoutedEventArgs e)

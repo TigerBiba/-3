@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Практическая_3.Models;
 using Практическая_3.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace Практическая_3.Pages
 {
@@ -24,10 +25,12 @@ namespace Практическая_3.Pages
     {
         private Staff selectedStaff;
         private string newImagePath;
-        public StaffChange(Staff staff)
+        public StaffChange(staffStruct staffStruct)
         {
             InitializeComponent();
             HospitalProEntities1 db = Helper.GetContext();
+
+            var staff = db.Staff.FirstOrDefault(x => x.ID_staff == staffStruct.ID_staff);
 
             selectedStaff = staff;
 
@@ -47,7 +50,7 @@ namespace Практическая_3.Pages
             var staffLogin = db.Login.FirstOrDefault(x => x.ID_login == staff.ID_login);
             tbLogin.Text = staffLogin.login1.ToString();
             tbPassword.Text = staffLogin.password.ToString();
-
+        
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -59,36 +62,38 @@ namespace Практическая_3.Pages
 
             if (selectedStaffInformation != null)
             {
+                string exp = tbExp.Text;
+                selectedStaffInformation.secondname = tbSurname.Text;
+                selectedStaffInformation.firstname = tbFirstname.Text;
+                selectedStaffInformation.email = tbEmail.Text;
+                selectedStaffInformation.work_experience = tbExp.Text;
 
-                if (tbSurname.Text != null && tbFirstname.Text != null && tbEmail.Text != null && tbLogin.Text != null && tbPassword.Text != null)
+                selectedStaffInformation.speciality = cbSpeciality.SelectedIndex+1;
+                if (newImagePath != null)
                 {
-                    string exp = tbExp.Text;
-                    selectedStaffInformation.secondname = tbSurname.Text;
-                    selectedStaffInformation.firstname = tbFirstname.Text;
-                    selectedStaffInformation.email = tbEmail.Text;
-                    selectedStaffInformation.work_experience = tbExp.Text;
-
-                    selectedStaffInformation.speciality = cbSpeciality.SelectedIndex+1;
-                    if (newImagePath != null)
-                    {
-                        selectedStaffInformation.photo = newImagePath;
-                    }
-                    else
-                    {
-                        selectedStaffInformation.photo = selectedStaffInformation.photo;
-                    }
-
-                    selectedStaffLogin.login1 = tbLogin.Text;
-                    selectedStaffLogin.password = Hash.HashPassword(tbPassword.Text);
-
-                    db.SaveChanges();
-
-                    NavigationService.Navigate(new Admin(selectedStaffInformation.firstname, selectedStaffInformation.secondname));
+                    selectedStaffInformation.photo = newImagePath;
                 }
                 else
                 {
-                    MessageBox.Show("Ошибка, все поля должны быть заполнены");
+                    selectedStaffInformation.photo = selectedStaffInformation.photo;
                 }
+
+                selectedStaffLogin.login1 = tbLogin.Text;
+                selectedStaffLogin.password = Hash.HashPassword(tbPassword.Text);
+
+                var context = new ValidationContext(selectedStaffLogin);
+                var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+                if (Validator.TryValidateObject(selectedStaffLogin, context, results, true))
+                {
+                    var contextStaffInformation = new ValidationContext(selectedStaffInformation);
+
+                    if (Validator.TryValidateObject(selectedStaffInformation, contextStaffInformation, results, true))
+                    {
+                    db.SaveChanges();
+                    }
+                }
+
+                NavigationService.Navigate(new Admin(selectedStaffInformation.firstname, selectedStaffInformation.secondname));
             }
         }
 

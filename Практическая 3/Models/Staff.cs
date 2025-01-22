@@ -11,7 +11,8 @@ namespace Практическая_3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Staff
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,15 +22,33 @@ namespace Практическая_3.Models
             this.Recordind = new HashSet<Recordind>();
             this.Reports = new HashSet<Reports>();
         }
-    
+
         public int ID_staff { get; set; }
+
         public int speciality { get; set; }
+
+        [Required(ErrorMessage = "Стаж работы должын быть указан")]
+        [StringLength(2, MinimumLength = 1)]
+        [Range(1, 99)]
         public string work_experience { get; set; }
+
         public Nullable<int> ID_departament { get; set; }
+
         public Nullable<int> ID_login { get; set; }
+
+        [Required(ErrorMessage = "Имя должно быть указано")]
+        [StringLength(200, MinimumLength = 1)]
         public string firstname { get; set; }
+
+        [Required(ErrorMessage = "Фамилия должна быть указана")]
+        [StringLength(200, MinimumLength = 1)]
         public string secondname { get; set; }
+
+        [Required(ErrorMessage = "Фото должно быть добавлено")]
         public string photo { get; set; }
+
+        [Required(ErrorMessage = "Email должын быть указан")]
+        [StringLength(200, MinimumLength = 1)]
         public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

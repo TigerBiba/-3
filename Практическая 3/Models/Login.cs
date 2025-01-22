@@ -11,7 +11,8 @@ namespace Практическая_3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Login
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +23,13 @@ namespace Практическая_3.Models
         }
     
         public int ID_login { get; set; }
+
+        [Required(ErrorMessage = "Логин должен быть указан")]
+        [StringLength(200, MinimumLength = 1)]
         public string login1 { get; set; }
+
+        [Required(ErrorMessage = "Пароль должен быть указан")]
+        [StringLength(200, MinimumLength = 1)]
         public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -26,6 +26,7 @@ namespace Практическая_3.Pages
         public string speciality { get; set; }
         public string email { get; set; }
         public string photo { get; set; }
+        public int ID_staff { get; set; }
     }
     public partial class Admin : Page
     {
@@ -75,6 +76,7 @@ namespace Практическая_3.Pages
                     speciality = role,
                     email = user.email,
                     photo = user.photo,
+                    ID_staff = user.ID_staff,
                 };
                 staffList.Add(staffStruct);
             }
@@ -83,7 +85,8 @@ namespace Практическая_3.Pages
 
         private void btnChangeUser_Click(object sender, RoutedEventArgs e)
         {
-            if (LViewStaff.SelectedItem is Staff selectedStaff)
+            Console.WriteLine(LViewStaff.SelectedItem);
+            if (LViewStaff.SelectedItem is staffStruct selectedStaff)
                 {
                     NavigationService.Navigate(new StaffChange(selectedStaff));
                 }
