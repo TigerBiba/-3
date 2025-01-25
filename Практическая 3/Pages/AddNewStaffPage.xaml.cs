@@ -50,57 +50,57 @@ namespace Практическая_3.Pages
 
             var loginID = db.Login.OrderByDescending(x => x.ID_login).First().ID_login + 1;
 
-                    staff.ID_staff = currentID;
-                    staff.secondname = tbSurname.Text;
-                    staff.firstname = tbFirstname.Text;
-                    staff.email = tbEmail.Text;
-                    staff.ID_login = loginID;
-                    staff.ID_departament = 1;
-                    staff.work_experience = tbExp.Text;
+            staff.ID_staff = currentID;
+            staff.secondname = tbSurname.Text;
+            staff.firstname = tbFirstname.Text;
+            staff.email = tbEmail.Text;
+            staff.ID_login = loginID;
+            staff.ID_departament = 1;
+            staff.work_experience = tbExp.Text;
 
-                    staff.speciality = cbSpeciality.SelectedIndex + 1;
-                    if (newImagePath != null)
-                    {
-                        staff.photo = newImagePath;
-                    }
-                    else
-                    {
-                        staff.photo = null;
-                    }
+            staff.speciality = cbSpeciality.SelectedIndex + 1;
+            if (newImagePath != null)
+            {
+                staff.photo = newImagePath;
+            }
+            else
+            {
+                 staff.photo = null;
+            }
 
-                    staffLogin.login1 = tbLogin.Text;
-                    staffLogin.password = Hash.HashPassword(tbPassword.Text);
+            staffLogin.login1 = tbLogin.Text;
+            staffLogin.password = Hash.HashPassword(tbPassword.Text);
 
-                    db.Staff.Add(staff);
-                    db.Login.Add(staffLogin);
+            db.Staff.Add(staff);
+            db.Login.Add(staffLogin);
 
-                    var context = new ValidationContext(staffLogin);
-                    var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+            var context = new ValidationContext(staffLogin);
+            var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
                 
-                if (!Validator.TryValidateObject(staffLogin, context, results, true))
+            if (!Validator.TryValidateObject(staffLogin, context, results, true))
+            {
+                var contextStaffInformation = new ValidationContext(staff);
+                foreach (var error in results)
                 {
-                    var contextStaffInformation = new ValidationContext(staff);
+                    MessageBox.Show(error.ErrorMessage);
+                    return;
+                }
+
+                if (!Validator.TryValidateObject(staff, contextStaffInformation, results, true))
+                {
                     foreach (var error in results)
                     {
                         MessageBox.Show(error.ErrorMessage);
                         return;
                     }
-
-                    if (!Validator.TryValidateObject(staff, contextStaffInformation, results, true))
+                } else if (Validator.TryValidateObject(staff, contextStaffInformation, results, true))
+                {
                     {
-                        foreach (var error in results)
-                        {
-                            MessageBox.Show(error.ErrorMessage);
-                            return;
-                        }
-                    } else if (Validator.TryValidateObject(staff, contextStaffInformation, results, true))
-                    {
-                        {
-                            db.SaveChanges();
-                            NavigationService.Navigate(new Admin(staff.firstname, staff.secondname));
-                        }
+                        db.SaveChanges();
+                        NavigationService.GoBack();
                     }
                 }
+            }
         }
 
         private void btnAddImage_Click(object sender, RoutedEventArgs e)

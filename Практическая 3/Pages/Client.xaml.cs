@@ -22,13 +22,13 @@ namespace Практическая_3.Pages
     /// </summary>
     public partial class Client : Page
     {
-        public Client(string firstname, string lastname)
+        public Client(Patient patient)
         {
             InitializeComponent();
-            timeNow(firstname, lastname);
+            timeNow(patient);
         }
 
-        private void timeNow(string firstname, string lastname) 
+        private void timeNow(Patient patient) 
         {
             TimeSpan userTime = (DateTime.Now.TimeOfDay);
             TimeSpan morning = new TimeSpan(10, 0, 0);
@@ -38,19 +38,19 @@ namespace Практическая_3.Pages
 
             if (userTime >= morning && userTime < day)
             {
-                tbPatient.Text = ($"Доброе утро, {firstname} {lastname}");
+                tbPatient.Text = ($"Доброе утро, {patient.firstname} {patient.secondname}");
             }
             else if (userTime >= day && userTime < evening) 
             {
-                tbPatient.Text = ($"Добрый день, {firstname} {lastname}");
+                tbPatient.Text = ($"Добрый день, {patient.firstname} {patient.secondname}");
             }
             else if (userTime >= evening && userTime < deepEvening)
             {
-                tbPatient.Text = ($"Добрый вечер, {firstname} {lastname}");
+                tbPatient.Text = ($"Добрый вечер, {patient.firstname} {patient.secondname}");
             }
             else
             {
-                tbPatient.Text = ($"Доброй ночи, {firstname} {lastname}");
+                tbPatient.Text = ($"Доброй ночи, {patient.firstname} {patient.secondname}");
             }
         }
     }

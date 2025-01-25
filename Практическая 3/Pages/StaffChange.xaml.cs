@@ -25,12 +25,10 @@ namespace Практическая_3.Pages
     {
         private Staff selectedStaff;
         private string newImagePath;
-        public StaffChange(staffStruct staffStruct)
+        public StaffChange(Staff staff)
         {
             InitializeComponent();
             HospitalProEntities1 db = Helper.GetContext();
-
-            var staff = db.Staff.FirstOrDefault(x => x.ID_staff == staffStruct.ID_staff);
 
             selectedStaff = staff;
 

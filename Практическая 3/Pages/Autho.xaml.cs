@@ -109,28 +109,39 @@ namespace Практическая_3.Pages
                 }
             }
         }
-        private void LoadPage(string role, string firstname, string lastname)
+        private void LoadPage(string role, Login login)
         {
+            HospitalProEntities1 db = Helper.GetContext();
+
             TimeSpan userTime = (DateTime.Now.TimeOfDay);
-            TimeSpan morning = new TimeSpan(10, 0, 0);
+            TimeSpan morning = new TimeSpan(8, 0, 0);
             TimeSpan evening = new TimeSpan(19, 0, 0);
 
             if (userTime < morning && role == "Работник" || userTime > evening && role == "Работник" || userTime < morning && role == "Админ" || userTime > evening && role == "Админ")
             {
                 MessageBox.Show("Сейчас время для отдыха");
             }
-            else if (firstname != null && lastname != null)
+            else
             {
                 switch (role)
                 {
                     case "Пациент":
-                        NavigationService.Navigate(new Client(firstname, lastname));
+                        Patient patient = db.Patient.FirstOrDefault(x => x.ID_login == login.ID_login);
+
+                        NavigationService.Navigate(new Client(patient));
+
                         break;
                     case "Работник":
-                        NavigationService.Navigate(new StaffPage(firstname, lastname));
+                        Staff staff = db.Staff.FirstOrDefault(x => x.ID_login == login.ID_login);
+
+                        NavigationService.Navigate(new StaffPage(staff));
+
                         break;
                     case "Админ":
-                        NavigationService.Navigate(new Admin(firstname, lastname));
+                        Staff admin = db.Staff.FirstOrDefault(x => x.ID_login == login.ID_login);
+
+                        NavigationService.Navigate(new Admin(admin));
+
                         break;
                 }
             }
@@ -221,24 +232,27 @@ namespace Практическая_3.Pages
                 if (speciality == 4)
                 {
                     role = "Админ";
-                    firstname = isStaff.firstname;
-                    secondname = isStaff.secondname;
-                    LoadPage(role, firstname, secondname);
+
+                    Login login = user;
+
+                    LoadPage(role, user);
                 }
                 else 
                 {
                     role = "Работник";
-                    firstname = isStaff.firstname;
-                    secondname = isStaff.secondname;
-                    LoadPage(role, firstname, secondname);
+
+                    Login login = user;
+
+                    LoadPage(role, user);
                 }
             }
             else if (isPatient != null)
             {
                 role = "Пациент";
-                firstname = isPatient.firstname;
-                secondname = isPatient.secondname;
-                LoadPage(role, firstname, secondname);
+
+                Login login = user;
+
+                LoadPage(role, user);
             }
 
             Clear(login1, password, true);

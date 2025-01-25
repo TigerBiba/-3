@@ -22,13 +22,13 @@ namespace Практическая_3.Pages
     /// </summary>
     public partial class StaffPage : Page
     {
-        public StaffPage(string firstname, string secondname)
+        public StaffPage(Staff staff)
         {
             InitializeComponent();
-            timeNow(firstname, secondname);
+            timeNow(staff);
             HospitalProEntities1 db = Helper.GetContext();
         }
-        private void timeNow(string firstname, string lastname)
+        private void timeNow(Staff staff)
         {
             TimeSpan userTime = (DateTime.Now.TimeOfDay);
             TimeSpan morning = new TimeSpan(10, 0, 0);
@@ -38,15 +38,15 @@ namespace Практическая_3.Pages
 
             if (userTime >= morning && userTime < day)
             {
-                tbStaff.Text = ($"Доброе утро, {firstname} {lastname}");
+                tbStaff.Text = ($"Доброе утро, {staff.firstname} {staff.secondname}");
             }
             else if (userTime >= day && userTime < evening)
             {
-                tbStaff.Text = ($"Добрый день, {firstname} {lastname}");
+                tbStaff.Text = ($"Добрый день, {staff.firstname} {staff.secondname}");
             }
             else if (userTime >= evening && userTime < deepEvening)
             {
-                tbStaff.Text = ($"Добрый вечер, {firstname} {lastname}");
+                tbStaff.Text = ($"Добрый вечер, {staff.firstname} {staff.secondname}");
             }
         }
     }

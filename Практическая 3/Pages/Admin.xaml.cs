@@ -32,7 +32,7 @@ namespace Практическая_3.Pages
     {
         private ObservableCollection<staffStruct> staffList;
         private ObservableCollection<staffStruct> staffListSearch;
-        public Admin(string firstname, string lastname)
+        public Admin(Staff admin)
         {
             InitializeComponent();
 
@@ -46,7 +46,7 @@ namespace Практическая_3.Pages
 
         private void AllStaffCard()
         {
-            HospitalProEntities1 db = new HospitalProEntities1();
+            HospitalProEntities1 db = Helper.GetContext();
             var staff = Helper.GetContext().Staff.ToList();
 
             foreach (var user in staff)
@@ -85,10 +85,14 @@ namespace Практическая_3.Pages
 
         private void btnChangeUser_Click(object sender, RoutedEventArgs e)
         {
+            HospitalProEntities1 db = Helper.GetContext();
+
             Console.WriteLine(LViewStaff.SelectedItem);
             if (LViewStaff.SelectedItem is staffStruct selectedStaff)
                 {
-                    NavigationService.Navigate(new StaffChange(selectedStaff));
+                    Staff staff = db.Staff.FirstOrDefault(x => x.ID_staff == selectedStaff.ID_staff);
+
+                    NavigationService.Navigate(new StaffChange(staff));
                 }
         }
 
