@@ -76,18 +76,31 @@ namespace Практическая_3.Pages
 
                     var context = new ValidationContext(staffLogin);
                     var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
-
-                if (Validator.TryValidateObject(staffLogin, context, results, true))
+                
+                if (!Validator.TryValidateObject(staffLogin, context, results, true))
                 {
                     var contextStaffInformation = new ValidationContext(staff);
-
-                    if (Validator.TryValidateObject(staff, contextStaffInformation, results, true))
+                    foreach (var error in results)
                     {
-                        db.SaveChanges();
+                        MessageBox.Show(error.ErrorMessage);
+                        return;
+                    }
+
+                    if (!Validator.TryValidateObject(staff, contextStaffInformation, results, true))
+                    {
+                        foreach (var error in results)
+                        {
+                            MessageBox.Show(error.ErrorMessage);
+                            return;
+                        }
+                    } else if (Validator.TryValidateObject(staff, contextStaffInformation, results, true))
+                    {
+                        {
+                            db.SaveChanges();
+                            NavigationService.Navigate(new Admin(staff.firstname, staff.secondname));
+                        }
                     }
                 }
-
-                NavigationService.Navigate(new Admin(staff.firstname, staff.secondname));
         }
 
         private void btnAddImage_Click(object sender, RoutedEventArgs e)

@@ -89,11 +89,10 @@ namespace Практическая_3.Pages
 
                     if (Validator.TryValidateObject(selectedStaffInformation, contextStaffInformation, results, true))
                     {
-                    db.SaveChanges();
+                        db.SaveChanges();
+                        NavigationService.GoBack();
                     }
                 }
-
-                NavigationService.Navigate(new Admin(selectedStaffInformation.firstname, selectedStaffInformation.secondname));
             }
         }
 

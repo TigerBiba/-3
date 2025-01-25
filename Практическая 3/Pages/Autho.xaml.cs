@@ -115,7 +115,7 @@ namespace Практическая_3.Pages
             TimeSpan morning = new TimeSpan(10, 0, 0);
             TimeSpan evening = new TimeSpan(19, 0, 0);
 
-            if (userTime < morning && role == "Работник" || userTime > evening && role == "Работник")
+            if (userTime < morning && role == "Работник" || userTime > evening && role == "Работник" || userTime < morning && role == "Админ" || userTime > evening && role == "Админ")
             {
                 MessageBox.Show("Сейчас время для отдыха");
             }
