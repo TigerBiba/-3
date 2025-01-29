@@ -39,9 +39,6 @@ namespace Практическая_3.Pages
             staffList = new ObservableCollection<staffStruct>();
             staffListSearch = new ObservableCollection<staffStruct>();
 
-            AllStaffCard();
-
-            LViewStaff.ItemsSource = staffListSearch;
         }
 
         private void AllStaffCard()
@@ -135,6 +132,19 @@ namespace Практическая_3.Pages
             cbSpeciality.SelectedIndex = -1;
 
             LViewStaff.ItemsSource = staffListSearch;
+        }
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                staffList.Clear();
+
+                LViewStaff.ItemsSource = null;
+
+                AllStaffCard();
+
+                LViewStaff.ItemsSource = staffListSearch;
+            }
         }
     }
 }

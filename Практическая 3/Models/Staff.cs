@@ -25,6 +25,8 @@ namespace Практическая_3.Models
 
         public int ID_staff { get; set; }
 
+        [Required(ErrorMessage = "Специальность должна быть указана")]
+        [Range(1, 4)]
         public int speciality { get; set; }
 
         [Required(ErrorMessage = "Стаж работы должын быть указан")]
@@ -44,7 +46,6 @@ namespace Практическая_3.Models
         [StringLength(200, MinimumLength = 1)]
         public string secondname { get; set; }
 
-        [Required(ErrorMessage = "Фото должно быть добавлено")]
         public string photo { get; set; }
 
         [Required(ErrorMessage = "Email должын быть указан")]

@@ -26,5 +26,6 @@
         </StackPanel>
         <TextBlock x:Name="tblCaptcha" Grid.Column="1" HorizontalAlignment="Left" Margin="25,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center"/>
         <Label x:Name="lbTimer" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="260" Visibility="Hidden" Foreground="#FFFF0404"/>
+        <Button x:Name="btnResetPassword" Grid.Column="2" Content="Забили пароль?" HorizontalAlignment="Left" Margin="10,286,0,0" VerticalAlignment="Top" Width="129" Click="btnResetPassword_Click"/>
     </Grid>
 </Page>

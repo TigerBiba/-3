@@ -137,6 +137,9 @@
     <Compile Include="Pages\Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ChangePasswordPage.xaml.cs">
+      <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Guest.xaml.cs">
       <DependentUpon>Guest.xaml</DependentUpon>
     </Compile>
@@ -146,7 +149,11 @@
     <Compile Include="Pages\StaffPage.xaml.cs">
       <DependentUpon>StaffPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TwoAutoPage.xaml.cs">
+      <DependentUpon>TwoAutoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\CaptchaGenerator.cs" />
+    <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\Hash.cs" />
     <Compile Include="Services\Helper.cs" />
     <Page Include="MainWindow.xaml">
@@ -173,6 +180,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ChangePasswordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Client.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\StaffPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TwoAutoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

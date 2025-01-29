@@ -41,7 +41,6 @@ namespace Практическая_3.Pages
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             HospitalProEntities1 db = Helper.GetContext();
-
             Staff staff = new Staff();
 
             Login staffLogin = new Login();
@@ -65,44 +64,45 @@ namespace Практическая_3.Pages
             }
             else
             {
-                 staff.photo = null;
+                staff.photo = null;
             }
 
             staffLogin.login1 = tbLogin.Text;
+
             staffLogin.password = Hash.HashPassword(tbPassword.Text);
+
+            
+
+            var context = new ValidationContext(staffLogin);
+            var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+            var contextStaffInformation = new ValidationContext(staff);
+
+            var loginValid = !Validator.TryValidateObject(staffLogin, context, results, true);
+            var staffValid = !Validator.TryValidateObject(staff, contextStaffInformation, results, true);
+
+            
+            if (loginValid || staffValid)
+            {
+                StringBuilder sb = new StringBuilder();
+                if(tbPassword.Text.ToString() == "") sb.AppendLine("Введите пароль");
+                foreach (var error in results)
+                {
+                    sb.AppendLine(error.ToString());
+                }
+                MessageBox.Show(sb.ToString());
+                return;
+            }
 
             db.Staff.Add(staff);
             db.Login.Add(staffLogin);
 
-            var context = new ValidationContext(staffLogin);
-            var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
-                
-            if (!Validator.TryValidateObject(staffLogin, context, results, true))
-            {
-                var contextStaffInformation = new ValidationContext(staff);
-                foreach (var error in results)
-                {
-                    MessageBox.Show(error.ErrorMessage);
-                    return;
-                }
-
-                if (!Validator.TryValidateObject(staff, contextStaffInformation, results, true))
-                {
-                    foreach (var error in results)
-                    {
-                        MessageBox.Show(error.ErrorMessage);
-                        return;
-                    }
-                } else if (Validator.TryValidateObject(staff, contextStaffInformation, results, true))
-                {
-                    {
-                        db.SaveChanges();
-                        NavigationService.GoBack();
-                    }
-                }
+            if (Validator.TryValidateObject(staff, contextStaffInformation, results, true) && Validator.TryValidateObject(staffLogin, context, results, true))
+            { 
+                db.SaveChanges();
+                NavigationService.GoBack();
             }
-        }
 
+        }                                                  
         private void btnAddImage_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();

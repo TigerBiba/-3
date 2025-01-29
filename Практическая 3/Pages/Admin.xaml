@@ -7,7 +7,7 @@
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Admin">
+      Title="Admin" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Page.Resources>
         <sys:String x:Key="defaultImage">
@@ -63,14 +63,14 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <TextBox x:Name="tbFind" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" Height="30" TextChanged="tbFind_TextChanged"/>
-        <Button x:Name="btnNewStaff" Content="Добавить" HorizontalAlignment="Left" Margin="675,10,0,0" VerticalAlignment="Top" Height="30" Click="btnNewStaff_Click"/>
-        <ComboBox x:Name="cbSpeciality" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="120" Height="30" SelectionChanged="cbSpeciality_SelectionChanged">
+        <TextBox x:Name="tbFind" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" Height="30" TextChanged="tbFind_TextChanged"/>
+        <Button x:Name="btnNewStaff" Content="Добавить" HorizontalAlignment="Left" Margin="559,10,0,0" VerticalAlignment="Top" Height="30" Click="btnNewStaff_Click"/>
+        <ComboBox x:Name="cbSpeciality" HorizontalAlignment="Left" Margin="265,10,0,0" VerticalAlignment="Top" Width="120" Height="30" SelectionChanged="cbSpeciality_SelectionChanged">
             <ComboBoxItem Content="Глав врач"></ComboBoxItem>
             <ComboBoxItem Content="Уборщик"></ComboBoxItem>
             <ComboBoxItem Content="Медсестра"></ComboBoxItem>
             <ComboBoxItem Content="Администратор"></ComboBoxItem>
         </ComboBox>
-        <Button x:Name="btnReset" Content="Сбросить фильтры" HorizontalAlignment="Left" Margin="462,10,0,0" VerticalAlignment="Top" Height="29" Width="184" Click="btnReset_Click"/>
+        <Button x:Name="btnReset" Content="Сбросить фильтры" HorizontalAlignment="Left" Margin="400,10,0,0" VerticalAlignment="Top" Height="30" Width="154" Click="btnReset_Click"/>
     </Grid>
 </Page>
