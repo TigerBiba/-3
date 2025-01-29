@@ -45,7 +45,7 @@ namespace Практическая_3.Pages
 
             Login staffLogin = new Login();
 
-            var currentID = db.Staff.OrderByDescending(x => x.ID_staff).First().ID_staff + 1;
+            var currentID = db.Staff.OrderByDescending(x => x.ID_staff).First().ID_staff + 1; //ищет id последнего пользователя и прибавляет 1, для нового пользователя
 
             var loginID = db.Login.OrderByDescending(x => x.ID_login).First().ID_login + 1;
 
@@ -81,7 +81,7 @@ namespace Практическая_3.Pages
             var staffValid = !Validator.TryValidateObject(staff, contextStaffInformation, results, true);
 
             
-            if (loginValid || staffValid)
+            if (loginValid || staffValid) // валидация, проверка на правильность введённых значений
             {
                 StringBuilder sb = new StringBuilder();
                 if(tbPassword.Text.ToString() == "") sb.AppendLine("Введите пароль");
@@ -105,7 +105,7 @@ namespace Практическая_3.Pages
         }                                                  
         private void btnAddImage_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new Microsoft.Win32.OpenFileDialog();
+            var dialog = new Microsoft.Win32.OpenFileDialog(); // открывает диалоговое окно для добавление аватарки пользователей
             dialog.DefaultExt = ".png";
 
             bool? result = dialog.ShowDialog();
@@ -116,7 +116,7 @@ namespace Практическая_3.Pages
 
                 try
                 {
-                    filePath.Replace("\\", "\\\\");
+                    filePath.Replace("\\", "\\\\"); //Заменяет слэши в пути т.к. \\ - спец символ
                     imgStaff.Source = new BitmapImage(new Uri(filePath));
                     newImagePath = filePath;
                 }

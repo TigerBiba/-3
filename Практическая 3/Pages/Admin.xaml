@@ -7,7 +7,8 @@
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Admin" IsVisibleChanged="Page_IsVisibleChanged">
+      Title="Admin" IsVisibleChanged="Page_IsVisibleChanged">     
+    <!--ISVisibleChanged - обработчик события изменения страницы -->
 
     <Page.Resources>
         <sys:String x:Key="defaultImage">
@@ -21,6 +22,7 @@
         <ListView Name="LViewStaff" Margin="5,45,5,5" d:ItemsSource="{d:SampleData ItemCount=1}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
             <ListView.ItemTemplate>
+                <!-- Шаблон для отображения каждого элемента -->
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1" Background="{Binding Backgroud}">
                         <Grid>
@@ -60,6 +62,7 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" Grid.IsSharedSizeScope="True" ScrollViewer.CanContentScroll="True"></WrapPanel>
+                    <!-- Позволяет элементам располагаться горихонтально с переносом на новую строку-->
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>

@@ -22,17 +22,17 @@ using Практическая_3.Services;
 
 namespace Практическая_3.Pages
 {
+    /// <summary>
+    /// Логика взаимодействия для Autho.xaml
+    /// </summary>
     public partial class Autho : Page
     {
         int click;
         string role = null;
-        string firstname = null;
-        string secondname = null;
         int speciality;
         
         DispatcherTimer dt = new DispatcherTimer();
 
-        static System.Timers.Timer timer;
 
         public Autho()
         {
@@ -49,7 +49,7 @@ namespace Практическая_3.Pages
 
             captchaVisibility(false);
 
-            var user = db.Login.FirstOrDefault(x => x.login1 == login1 && x.password == password);
+            var user = db.Login.FirstOrDefault(x => x.login1 == login1 && x.password == password); // поиск пользователя по логину используя Linq
             if (click == 1)
             {
                  if (user != null)
@@ -116,10 +116,10 @@ namespace Практическая_3.Pages
 
             string capctchaText = CaptchaGenerator.GenerateCaptchaText(6);
             tblCaptcha.Text = capctchaText;
-            tblCaptcha.TextDecorations = TextDecorations.Strikethrough;
+            tblCaptcha.TextDecorations = TextDecorations.Strikethrough; //Зачёркивание текста для капчи(что бы было сложней её пройти)
         }
 
-        int second = 10;
+        private int second = 10;
         private void dtTicker(object sender, EventArgs e)
         {
             if (second >= 0)
@@ -186,7 +186,7 @@ namespace Практическая_3.Pages
         {
             Random rnd = new Random();
 
-            int code = rnd.Next(100000, 999999);
+            int code = rnd.Next(100000, 999999); // Составление случайного кода для подтверждения
 
             HospitalProEntities1 db = Helper.GetContext();
 

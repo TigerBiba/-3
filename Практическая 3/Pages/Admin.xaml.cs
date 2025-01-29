@@ -19,6 +19,9 @@ using Практическая_3.Services;
 
 namespace Практическая_3.Pages
 {
+    /// <summary>
+    /// Логика взаимодействия для Admin.xaml
+    /// </summary>
     public struct staffStruct
     {
         public string firstname { get; set; }
@@ -30,8 +33,8 @@ namespace Практическая_3.Pages
     }
     public partial class Admin : Page
     {
-        private ObservableCollection<staffStruct> staffList;
-        private ObservableCollection<staffStruct> staffListSearch;
+        private ObservableCollection<staffStruct> staffList; // все пользователи которых в последствии надо отобразить
+        private ObservableCollection<staffStruct> staffListSearch; //Карточки пользователей которые надо отобразить
         public Admin(Staff admin)
         {
             InitializeComponent();
@@ -116,6 +119,7 @@ namespace Практическая_3.Pages
 
             foreach (var staff in staffList)
             {
+                //ищет все схождения с условиями: нулевой текст бокс, или если найдено вхождениев staff
                 bool matchesSearch = string.IsNullOrEmpty(tbFind.Text) || staff.firstname.Contains(tbFind.Text) || staff.secondname.Contains(tbFind.Text);
                 bool mathesSpeciality = string.IsNullOrEmpty(selectedSpeciality) || selectedSpeciality == staff.speciality;
 

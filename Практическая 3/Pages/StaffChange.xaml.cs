@@ -59,7 +59,7 @@ namespace Практическая_3.Pages
 
             staffInfo.secondname = tbSurname.Text;
             staffInfo.firstname = tbFirstname.Text;
-            staffInfo   .email = tbEmail.Text;
+            staffInfo.email = tbEmail.Text;
             staffInfo.work_experience = tbExp.Text;
 
             staffInfo.speciality = cbSpeciality.SelectedIndex + 1;

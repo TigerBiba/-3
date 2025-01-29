@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Практическая_3.Services
 {
+    /// <summary>
+    /// Генерирует случайный текст заданной длины для капчи.
+    /// </summary>
+    /// <param name="length">Длина текста капчи.</param>
+    /// <returns>Случайный текст капчи.</returns>
     internal class CaptchaGenerator
     {
         private static readonly Random random = new Random();
-        private const string Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        private const string Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; // все символы использующиеся в генерации капчи
 
-        /// <summary>
-        /// Генерирует случайный текст заданной длины для капчи.
-        /// </summary>
-        /// <param name="length">Длина текста капчи.</param>
-        /// <returns>Случайный текст капчи.</returns>
         public static string GenerateCaptchaText(int length)
         {
             if (length <= 0)
