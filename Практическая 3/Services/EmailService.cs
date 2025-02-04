@@ -83,7 +83,7 @@ namespace Практическая_3.Services
         /// </summary>
         /// <param name="userEmail">Email пользователя по которому происходит поиск</param>
         /// <param name="code">Код для сброса пароля</param>
-        public void RequestPasswordReset(string userEmail, int code) //ищет пользователя в системе
+        public void RequestPasswordReset(string userEmail, int code)
         {
             var patient = dbContext.Patient.FirstOrDefault(x => x.email == userEmail);
             var staff = dbContext.Staff.FirstOrDefault(x => x.email == userEmail);
