@@ -44,6 +44,12 @@ namespace Практическая_3.Pages
 
         }
 
+        /// <summary>
+        /// Получает все карточки пользователей
+        /// </summary>
+        /// <param name="db">Контекст базы данных</param>
+        /// <param name="staff">Массив всех работников в бд</param>
+        /// <returns>Коллекция карточек пользователей</returns>
         private void AllStaffCard()
         {
             HospitalProEntities1 db = Helper.GetContext();

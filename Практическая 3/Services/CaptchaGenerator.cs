@@ -10,11 +10,12 @@ namespace Практическая_3.Services
     /// Генерирует случайный текст заданной длины для капчи.
     /// </summary>
     /// <param name="length">Длина текста капчи.</param>
+    /// <param name="Characters">все символы использующиеся в генерации капчи</param>
     /// <returns>Случайный текст капчи.</returns>
     internal class CaptchaGenerator
     {
         private static readonly Random random = new Random();
-        private const string Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; // все символы использующиеся в генерации капчи
+        private const string Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         public static string GenerateCaptchaText(int length)
         {

@@ -32,11 +32,13 @@ namespace Практическая_3.Services
             this.smtpPassword = smtpPassword;
         }
 
+        /// <summary>
+        /// Отправляет само сообщение пользователю на адресс электронной почты
+        /// </summary>
+        /// <param name="userEmail">Почта на которую юудет отправлено письмо</param>
+        /// <param name="code">Код для сброса/авторизации</param>
         public void SendPasswordResetEmail(string userEmail, string code)
         {
-             /* Отправляет само сообщение пользователю на адресс электронной почты
-             Принимает саму почту пользователя и код подтверждения который заранее генерируется
-             */
             try
             {
                 using (var client = new SmtpClient(smtpServer, smtpPort))
@@ -65,12 +67,6 @@ namespace Практическая_3.Services
         }
     }
 
-    /// <summary>
-    /// Ищет пользователя в системе
-    /// </summary>
-    /// <param name="dbContext">Контекст базы данных</param>
-    /// <param name="emailService">Представление email service - тот кто отправляет</param>
-   
     public class UserService
     {
         private readonly HospitalProEntities1 dbContext;
@@ -82,6 +78,11 @@ namespace Практическая_3.Services
             this.emailService = emailService;
         }
 
+        /// <summary>
+        /// Ищет пользователя в системе
+        /// </summary>
+        /// <param name="userEmail">Email пользователя по которому происходит поиск</param>
+        /// <param name="code">Код для сброса пароля</param>
         public void RequestPasswordReset(string userEmail, int code) //ищет пользователя в системе
         {
             var patient = dbContext.Patient.FirstOrDefault(x => x.email == userEmail);
