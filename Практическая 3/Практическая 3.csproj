@@ -274,5 +274,8 @@
     </Content>
     <Resource Include="Resources\cat.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Files\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

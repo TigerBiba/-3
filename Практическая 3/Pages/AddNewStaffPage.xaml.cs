@@ -137,6 +137,42 @@ namespace Практическая_3.Pages
 
             cbSpeciality.SelectedIndex = 1;
         }
-        
+
+        private void PrintStaffDocs(Staff staff)
+        {
+            HospitalProEntities1 db = Helper.GetContext();
+
+            string fullNameStaff = (string)staff.firstname + " " + (string)staff.secondname;
+
+            var staffSpeciality = db.Speciality.FirstOrDefault(x => x.ID_speciality == staff.speciality);
+            var addressDepartament = db.Departament.FirstOrDefault(x => x.ID_departament == staff.ID_departament);
+
+            var items = new Dictionary<string, string>()
+            {
+                {"<Number>", staff.ID_staff.ToString()},
+                {"<City>", "Новосибирск" },
+                {"<Day>", "Объект datetime хранящий текущий день"},
+                {"<Month>", "Объект datetime хранящий текущий месяц"},
+                {"<Year>",  "Объект datetime хранящий текущий год"},
+                {"<Hospital>", "Психическая больница"},
+                {"<HospitalName>", "Цветочки" },
+                {"<Director>", "Хаустова Артёма Сергеевича" },
+                {"<FullNameStaff>", fullNameStaff},
+                {"<Hospitals>", "психиатрическую больницу: Цветочки" },
+                {"<StaffSpeciality>", (string)staffSpeciality.name },
+                {"<AddresDepartament>", (string)addressDepartament.addres },
+                {"<DayPlusOne>", "Объект datetime хранящий день когда тип пойдёт на работу"},
+                {"<Chellange>",  "1 месяц"},
+                {"<Salary>", "50000" },
+                {"<SalaryPropis>", "пятьдесят тысяч" },
+                {"<NormDock>", "Какой то крутой документ" },
+                {"<PSNormalDock>", "Доп выплат не будет" },
+                {"<DirectorINN>", "680076212" },
+                {"<DirectorPro>", "Mickey" },
+                {"<GeneralDirector>", "Теслюк Алина Витальевна" },
+                {"<GeneralDirectorSocr>", "Теслюк А. В." },
+                {"<GeneralDirectorSign>", "Настоящая подпись" }
+            };
+        }
     }
 }
