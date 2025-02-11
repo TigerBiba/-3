@@ -35,10 +35,13 @@ namespace Практическая_3.Pages
     {
         private ObservableCollection<staffStruct> staffList; // все пользователи которых в последствии надо отобразить
         private ObservableCollection<staffStruct> staffListSearch; //Карточки пользователей которые надо отобразить
+
+        private Staff administrator;
         public Admin(Staff admin)
         {
             InitializeComponent();
 
+            administrator = admin;
             staffList = new ObservableCollection<staffStruct>();
             staffListSearch = new ObservableCollection<staffStruct>();
 
@@ -155,6 +158,32 @@ namespace Практическая_3.Pages
 
                 LViewStaff.ItemsSource = staffListSearch;
             }
+        }
+
+        private void btnPrintDocs(object sender, RoutedEventArgs e)
+        {
+            FlowDocument doc = flowDocumentReader.Document;
+
+            if (doc == null)
+            {
+                MessageBox.Show("Документ не найден");
+                return;
+            }
+            else
+            {
+                PrintDialog printDialog = new PrintDialog();
+                if (printDialog.ShowDialog() == true) 
+                {
+                    IDocumentPaginatorSource idpSource = doc;
+                    printDialog.PrintDocument(idpSource.DocumentPaginator, "Список сотрудников");
+                }
+            }
+
+        }
+
+        private void btnAllDrugs(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AllDrugs(administrator));
         }
     }
 }

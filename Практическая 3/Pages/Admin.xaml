@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Практическая_3.Pages"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="950"
       Title="Admin" IsVisibleChanged="Page_IsVisibleChanged">     
     <!--ISVisibleChanged - обработчик события изменения страницы -->
 
@@ -18,62 +18,70 @@
 
 
     <Grid>
+        <FlowDocumentReader x:Name="flowDocumentReader" Grid.Row="1" ViewingMode="Scroll">
+            <FlowDocument PageWidth="Auto">
+                <BlockUIContainer>
 
-        <ListView Name="LViewStaff" Margin="5,45,5,5" d:ItemsSource="{d:SampleData ItemCount=1}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView Name="LViewStaff" Margin="5,45,5,5" d:ItemsSource="{d:SampleData ItemCount=1}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
-            <ListView.ItemTemplate>
-                <!-- Шаблон для отображения каждого элемента -->
-                <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1" Background="{Binding Backgroud}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="120"/>
-                                <RowDefinition Height="85"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
-                            </Grid.ColumnDefinitions>
+                        <ListView.ItemTemplate>
+                            <!-- Шаблон для отображения каждого элемента -->
+                            <DataTemplate>
+                                <Border BorderBrush="Black" BorderThickness="1" Background="{Binding Backgroud}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="120"/>
+                                            <RowDefinition Height="85"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
 
-                            <Image Width="100" Height="100" Margin="5" Source="{Binding photo,  FallbackValue={StaticResource defaultImage}}"/>
+                                        <Image Width="100" Height="100" Margin="5" Source="{Binding photo,  FallbackValue={StaticResource defaultImage}}"/>
 
-                            <StackPanel Grid.Row="1" Margin="0">
-                                <TextBlock Text="{Binding speciality}" FontSize="12" TextAlignment="Center" />
-                                <TextBlock FontSize="12" TextAlignment="Center">
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat='{}{0} {1}'>
-                                            <Binding Path="firstname" />
-                                            <Binding Path="secondname" />
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                                <TextBlock Text="{Binding email}" FontSize="12" TextAlignment="Center" />
-                            </StackPanel>
+                                        <StackPanel Grid.Row="1" Margin="0">
+                                            <TextBlock Text="{Binding speciality}" FontSize="12" TextAlignment="Center" />
+                                            <TextBlock FontSize="12" TextAlignment="Center">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat='{}{0} {1}'>
+                                                        <Binding Path="firstname" />
+                                                        <Binding Path="secondname" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding email}" FontSize="12" TextAlignment="Center" />
+                                        </StackPanel>
 
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Name="btnChangeUser"  Header="Изменить" Click="btnChangeUser_Click">
-                    </MenuItem>
-                </ContextMenu>
-            </ListView.ContextMenu>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" Grid.IsSharedSizeScope="True" ScrollViewer.CanContentScroll="True"></WrapPanel>
-                    <!-- Позволяет элементам располагаться горихонтально с переносом на новую строку-->
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
-        <TextBox x:Name="tbFind" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" Height="30" TextChanged="tbFind_TextChanged"/>
-        <Button x:Name="btnNewStaff" Content="Добавить" HorizontalAlignment="Left" Margin="559,10,0,0" VerticalAlignment="Top" Height="30" Click="btnNewStaff_Click"/>
-        <ComboBox x:Name="cbSpeciality" HorizontalAlignment="Left" Margin="265,10,0,0" VerticalAlignment="Top" Width="120" Height="30" SelectionChanged="cbSpeciality_SelectionChanged">
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Name="btnChangeUser"  Header="Изменить" Click="btnChangeUser_Click">
+                                </MenuItem>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" Grid.IsSharedSizeScope="True" ScrollViewer.CanContentScroll="True"></WrapPanel>
+                                <!-- Позволяет элементам располагаться горихонтально с переносом на новую строку-->
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </BlockUIContainer>
+            </FlowDocument>
+        </FlowDocumentReader>
+        <TextBox x:Name="tbFind" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" Height="39" TextChanged="tbFind_TextChanged"/>
+        <Button x:Name="btnNewStaff" Content="Добавить" HorizontalAlignment="Left" Margin="559,10,0,0" VerticalAlignment="Top" Height="39" Click="btnNewStaff_Click" Width="116"/>
+        <ComboBox x:Name="cbSpeciality" HorizontalAlignment="Left" Margin="265,10,0,0" VerticalAlignment="Top" Width="120" Height="39" SelectionChanged="cbSpeciality_SelectionChanged">
             <ComboBoxItem Content="Глав врач"></ComboBoxItem>
             <ComboBoxItem Content="Уборщик"></ComboBoxItem>
             <ComboBoxItem Content="Медсестра"></ComboBoxItem>
             <ComboBoxItem Content="Администратор"></ComboBoxItem>
         </ComboBox>
-        <Button x:Name="btnReset" Content="Сбросить фильтры" HorizontalAlignment="Left" Margin="400,10,0,0" VerticalAlignment="Top" Height="30" Width="154" Click="btnReset_Click"/>
+        <Button x:Name="btnReset" Content="Сбросить фильтры" HorizontalAlignment="Left" Margin="400,10,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="btnReset_Click"/>
+        <Button x:Name="btnPrint" Content="Печать" HorizontalAlignment="Left" Margin="680,11,0,0" VerticalAlignment="Top" Height="38" Width="112" Click="btnPrintDocs"/>
+        <Button x:Name="btnDrugs" Content="Лекарства" HorizontalAlignment="Left" Margin="797,11,0,0" VerticalAlignment="Top" Height="38" Width="112" Click="btnAllDrugs"/>
     </Grid>
 </Page>

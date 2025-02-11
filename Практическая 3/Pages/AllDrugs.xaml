@@ -1,0 +1,49 @@
+﻿<Page x:Class="Практическая_3.Pages.AllDrugs"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Практическая_3.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="950"
+      Title="AllDrugs" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+        <FlowDocumentReader x:Name="flowDocumentReader" Grid.Row="1" ViewingMode="Scroll">
+            <FlowDocument PageWidth="Auto">
+                <BlockUIContainer>
+
+                    <ListView Name="LViewStaff" Margin="5,45,5,5" d:ItemsSource="{d:SampleData ItemCount=1}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                        <ListView.ItemTemplate>
+                            <!-- Шаблон для отображения каждого элемента -->
+                            <DataTemplate>
+                                <Border BorderBrush="Black" BorderThickness="1" Background="{Binding Backgroud}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Row="1" Margin="0">
+                                            <TextBlock Text="{Binding name}" FontSize="12" TextAlignment="Center" />
+                                            <TextBlock Text="{Binding dosage}" FontSize="12" TextAlignment="Center" />
+                                            <TextBlock Text="{Binding date_of_manufactured}" FontSize="12" TextAlignment="Center" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" Grid.IsSharedSizeScope="True" ScrollViewer.CanContentScroll="True"></WrapPanel>
+                                <!-- Позволяет элементам располагаться горихонтально с переносом на новую строку-->
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </BlockUIContainer>
+            </FlowDocument>
+        </FlowDocumentReader>
+        <Button x:Name="btnNewDrug" Content="Добавить" HorizontalAlignment="Left" Margin="559,10,0,0" VerticalAlignment="Top" Height="39" Click="btnNewDrug_Click" Width="116"/>
+        <Button x:Name="btnPrint" Content="Печать" HorizontalAlignment="Left" Margin="680,11,0,0" VerticalAlignment="Top" Height="38" Width="112" Click="btnPrintDocs"/>
+    </Grid>
+</Page>
