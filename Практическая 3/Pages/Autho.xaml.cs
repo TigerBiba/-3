@@ -45,7 +45,7 @@ namespace Практическая_3.Pages
             click += 1;
             string login1 = txtbLogin.Text.Trim();
             string password = Hash.HashPassword(pswbPassword.Password.Trim());
-            HospitalProEntities1 db = Helper.GetContext();
+            HospitalProEntities db = Helper.GetContext();
 
             captchaVisibility(false);
 
@@ -188,7 +188,7 @@ namespace Практическая_3.Pages
 
             int code = rnd.Next(100000, 999999); // Составление случайного кода для подтверждения
 
-            HospitalProEntities1 db = Helper.GetContext();
+            HospitalProEntities db = Helper.GetContext();
 
             var emailService = new EmailService("smtp.mail.ru", 587, "elonmuskpro@mail.ru", "yKpwiCcg6Dhtibb4dbu5");
             var userService = new UserService(db, emailService);            

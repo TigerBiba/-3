@@ -60,6 +60,8 @@
                             <ContextMenu>
                                 <MenuItem Name="btnChangeUser"  Header="Изменить" Click="btnChangeUser_Click">
                                 </MenuItem>
+                                <MenuItem Name="btnDeleteUser"  Header="Удалить" Click="btnDeleteUser_Click">
+                                </MenuItem>
                             </ContextMenu>
                         </ListView.ContextMenu>
                         <ListView.ItemsPanel>

@@ -13,13 +13,13 @@ namespace Практическая_3.Services
     /// <returns>Контекст базы данных</returns>
     internal class Helper
     {
-        private static HospitalProEntities1 _context;
+        private static HospitalProEntities _context;
 
-        public static HospitalProEntities1 GetContext()
+        public static HospitalProEntities GetContext()
         {
             if (_context == null)
             {
-                _context = new HospitalProEntities1();
+                _context = new HospitalProEntities();
             }
             return _context;
         }

@@ -69,10 +69,10 @@ namespace Практическая_3.Services
 
     public class UserService
     {
-        private readonly HospitalProEntities1 dbContext;
+        private readonly HospitalProEntities dbContext;
         private readonly EmailService emailService;
 
-        public UserService(HospitalProEntities1 dbContext, EmailService emailService)
+        public UserService(HospitalProEntities dbContext, EmailService emailService)
         {
             this.dbContext = dbContext;
             this.emailService = emailService;

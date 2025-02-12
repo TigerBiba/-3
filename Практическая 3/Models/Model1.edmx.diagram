@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b2f43b83a68b4119bb0ae14ec032a602" Name="Diagram1">
+      <Diagram DiagramId="6b0f80916daf4543814f42470b500821" Name="Diagram1">
         <EntityTypeShape EntityType="HospitalProModel.Departament" Width="1.5" PointX="8.25" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalProModel.Drugs" Width="1.5" PointX="11.25" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalProModel.DrugsInDepartament" Width="1.5" PointX="13.5" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalProModel.Finance" Width="1.5" PointX="10.5" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalProModel.Hospitalizations" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalProModel.Hospitalizations" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalProModel.Login" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalProModel.Patient" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalProModel.PatientCard" Width="1.5" PointX="5.25" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalProModel.Prescriptions" Width="1.5" PointX="8.25" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalProModel.Recordind" Width="1.5" PointX="8.25" PointY="17.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalProModel.Reports" Width="1.5" PointX="10.5" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalProModel.Service" Width="1.5" PointX="8.25" PointY="21.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalProModel.Speciality" Width="1.5" PointX="3.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalProModel.Staff" Width="1.5" PointX="6" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalProModel.Prescriptions" Width="1.5" PointX="8.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalProModel.Recordind" Width="1.5" PointX="11.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalProModel.Reports" Width="1.5" PointX="13.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalProModel.Service" Width="1.5" PointX="11.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalProModel.Speciality" Width="1.5" PointX="3.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalProModel.Staff" Width="1.5" PointX="6" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalProModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalProModel.Ward" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalProModel.WardInDepartament" Width="1.5" PointX="10.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalProModel.Ward" Width="1.5" PointX="8.25" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalProModel.WardInDepartament" Width="1.5" PointX="10.5" PointY="17.375" IsExpanded="true" />
         <AssociationConnector Association="HospitalProModel.FK_Departament_Staff" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalProModel.FK_DrugsInDepartament_Departament" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalProModel.FK_Finance_Departament" ManuallyRouted="false" />

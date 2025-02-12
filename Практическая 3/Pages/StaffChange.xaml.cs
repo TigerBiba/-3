@@ -28,7 +28,7 @@ namespace Практическая_3.Pages
         public StaffChange(Staff staff)
         {
             InitializeComponent();
-            HospitalProEntities1 db = Helper.GetContext();
+            HospitalProEntities db = Helper.GetContext();
 
             selectedStaff = staff;
 
@@ -53,7 +53,7 @@ namespace Практическая_3.Pages
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            HospitalProEntities1 db = Helper.GetContext();
+            HospitalProEntities db = Helper.GetContext();
             Staff staffInfo = db.Staff.FirstOrDefault(x => x.ID_staff == selectedStaff.ID_staff);
             Login staffLogin = db.Login.FirstOrDefault(x => x.ID_login == selectedStaff.ID_login);
 

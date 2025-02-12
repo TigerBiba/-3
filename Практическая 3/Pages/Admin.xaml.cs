@@ -55,7 +55,7 @@ namespace Практическая_3.Pages
         /// <returns>Коллекция карточек пользователей</returns>
         private void AllStaffCard()
         {
-            HospitalProEntities1 db = Helper.GetContext();
+            HospitalProEntities db = Helper.GetContext();
             var staff = Helper.GetContext().Staff.ToList();
 
             foreach (var user in staff)
@@ -94,9 +94,8 @@ namespace Практическая_3.Pages
 
         private void btnChangeUser_Click(object sender, RoutedEventArgs e)
         {
-            HospitalProEntities1 db = Helper.GetContext();
+            HospitalProEntities db = Helper.GetContext();
 
-            Console.WriteLine(LViewStaff.SelectedItem);
             if (LViewStaff.SelectedItem is staffStruct selectedStaff)
                 {
                     Staff staff = db.Staff.FirstOrDefault(x => x.ID_staff == selectedStaff.ID_staff);
@@ -184,6 +183,29 @@ namespace Практическая_3.Pages
         private void btnAllDrugs(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AllDrugs(administrator));
+        }
+
+        private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            HospitalProEntities db = Helper.GetContext();
+
+            try
+            {
+                if (LViewStaff.SelectedItem is staffStruct selectedStaff)
+                {
+                    Staff staff = db.Staff.FirstOrDefault(x => x.ID_staff == selectedStaff.ID_staff);
+                    Login loginStaff = db.Login.FirstOrDefault(x => x.ID_login == staff.ID_login);
+
+                    db.Staff.Remove(staff);
+                    db.Login.Remove(loginStaff);
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

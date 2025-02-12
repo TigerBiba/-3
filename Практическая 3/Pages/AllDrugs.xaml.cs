@@ -42,7 +42,7 @@ namespace Практическая_3.Pages
 
         private void AllDrugsCard()
         {
-            HospitalProEntities1 db = Helper.GetContext();
+            HospitalProEntities db = Helper.GetContext();
             var drugs = Helper.GetContext().Drugs.ToList();
 
             foreach (var drug in drugs)

@@ -5,28 +5,34 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Практическая_3.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="500" d:DesignWidth="800"
       Title="AddNewStaffPage">
 
     <Grid>
         <TextBox x:Name="tbSurname" HorizontalAlignment="Left" Margin="132,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" Height="27"/>
         <TextBox x:Name="tbFirstname" HorizontalAlignment="Left" Margin="133,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Height="27"/>
         <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Margin="133,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Height="27"/>
-        <Button x:Name="btnSave" Content="Сохранить" HorizontalAlignment="Left" Margin="132,340,0,0" VerticalAlignment="Top" Click="btnSave_Click"/>
-        <Button x:Name="btnClear" Content="Отчистить" HorizontalAlignment="Left" Margin="258,340,0,0" VerticalAlignment="Top" Click="btnClear_Click"/>
+        <Button x:Name="btnSave" Content="Сохранить" HorizontalAlignment="Left" Margin="133,450,0,0" VerticalAlignment="Top" Click="btnSave_Click"/>
+        <Button x:Name="btnClear" Content="Отчистить" HorizontalAlignment="Left" Margin="257,450,0,0" VerticalAlignment="Top" Click="btnClear_Click"/>
         <TextBox x:Name="tbLogin" HorizontalAlignment="Left" Margin="132,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Height="27"/>
         <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Margin="133,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Height="27"/>
         <ComboBox x:Name="cbSpeciality" HorizontalAlignment="Left" Margin="132,146,0,0" VerticalAlignment="Top" Width="246"/>
-        <TextBlock HorizontalAlignment="Left" Margin="24,14,0,0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
-        <TextBlock HorizontalAlignment="Left" Margin="24,59,0,0" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
-        <TextBlock HorizontalAlignment="Left" Margin="24,104,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
-        <TextBlock HorizontalAlignment="Left" Margin="24,148,0,0" TextWrapping="Wrap" Text="Специальность" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
-        <TextBlock HorizontalAlignment="Left" Margin="24,202,0,0" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
-        <TextBlock HorizontalAlignment="Left" Margin="24,249,0,0" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
+        <TextBlock HorizontalAlignment="Left" Margin="12,14,0,0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
+        <TextBlock HorizontalAlignment="Left" Margin="12,59,0,0" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
+        <TextBlock HorizontalAlignment="Left" Margin="12,104,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,154,0,0" TextWrapping="Wrap" Text="Специальность" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
+        <TextBlock HorizontalAlignment="Left" Margin="12,202,0,0" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
+        <TextBlock HorizontalAlignment="Left" Margin="12,249,0,0" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
         <Image x:Name="imgStaff" HorizontalAlignment="Left" Height="127" Margin="400,10,0,0" VerticalAlignment="Top" Width="140"/>
         <Button x:Name="btnAddImage" Content="Добавить фото" HorizontalAlignment="Left" Margin="400,148,0,0" VerticalAlignment="Top" Width="140" Click="btnAddImage_Click"/>
         <TextBox x:Name="tbExp" HorizontalAlignment="Left" Margin="133,292,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Height="27"/>
-        <TextBlock HorizontalAlignment="Left" Margin="24,296,0,0" TextWrapping="Wrap" Text="Стаж работы" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
+        <TextBlock HorizontalAlignment="Left" Margin="12,296,0,0" TextWrapping="Wrap" Text="Стаж работы" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
+        <TextBox x:Name="tbPassportSeries" HorizontalAlignment="Left" Margin="133,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Height="27"/>
+        <TextBox x:Name="tbPassportNomber" HorizontalAlignment="Left" Margin="133,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Height="27"/>
+        <TextBox x:Name="tbIssues" HorizontalAlignment="Left" Margin="133,418,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Height="27"/>
+        <TextBlock HorizontalAlignment="Left" Margin="7,342,0,0" TextWrapping="Wrap" Text="Серия Пасспорта" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
+        <TextBlock HorizontalAlignment="Left" Margin="7,384,0,0" TextWrapping="Wrap" Text="Номер Пасспорта" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
+        <TextBlock HorizontalAlignment="Left" Margin="5,422,0,0" TextWrapping="Wrap" Text="Кем выдан" VerticalAlignment="Top" Foreground="#FF1DC62D"/>
 
     </Grid>
 </Page>

@@ -34,7 +34,7 @@ namespace Практическая_3.Pages
             {
                 string userEmail = tbEmail.Text;
 
-                var dbContext = new HospitalProEntities1();
+                var dbContext = new HospitalProEntities();
                 var emailService = new EmailService("smtp.mail.ru", 587, "elonmuskpro@mail.ru", "yKpwiCcg6Dhtibb4dbu5");
 
                 Random rnd = new Random();
@@ -56,7 +56,7 @@ namespace Практическая_3.Pages
         {
             if (code.ToString() == tbCode.Text)
             {
-                HospitalProEntities1 db = Helper.GetContext();
+                HospitalProEntities db = Helper.GetContext();
 
                 var patient = db.Patient.FirstOrDefault(x => x.email == tbEmail.Text);
                 var staff = db.Staff.FirstOrDefault(x => x.email == tbEmail.Text);

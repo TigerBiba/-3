@@ -37,13 +37,13 @@ namespace Практическая_3.Pages
 
         private void LoadPage(string role, Login login)
         {
-            HospitalProEntities1 db = Helper.GetContext();
+            HospitalProEntities db = Helper.GetContext();
 
             TimeSpan userTime = (DateTime.Now.TimeOfDay);
             TimeSpan morning = new TimeSpan(8, 0, 0);
             TimeSpan evening = new TimeSpan(19, 0, 0);
 
-            if (userTime < morning && role == "Работник" || userTime > evening && role == "Работник" || userTime < morning && role == "Админ" || userTime > evening && role == "Админ")
+            if (userTime < morning && role == "Работник" || userTime > evening && role == "Работник")
             {
                 MessageBox.Show("Сейчас время для отдыха");
             }

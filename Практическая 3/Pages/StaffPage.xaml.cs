@@ -26,7 +26,7 @@ namespace Практическая_3.Pages
         {
             InitializeComponent();
             timeNow(staff);
-            HospitalProEntities1 db = Helper.GetContext();
+            HospitalProEntities db = Helper.GetContext();
         }
         private void timeNow(Staff staff)
         {
